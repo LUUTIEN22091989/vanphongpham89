@@ -112,47 +112,7 @@
 		<div class="header-top" style="background: #0000ffa3;">
 			<div class="container">
 				<div class="row">
-					<!-- HEADER-LEFT-MENU START -->
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-						<div class="header-left-menu">
-							<div class="welcome-info">
-								Welcome <span>BootExperts</span>
-							</div>
-							<div class="currenty-converter">
-								<form method="post" action="#" id="currency-set">
-									<div class="current-currency">
-										<span class="cur-label">Currency : </span><strong>USD</strong>
-									</div>
-									<ul class="currency-list currency-toogle">
-										<li>
-											<a title="Dollar (USD)" href="#">Dollar (USD)</a>
-										</li>
-										<li>
-										<a title="Euro (EUR)" href="#">Euro (EUR)</a>
-										</li>
-									</ul>
-								</form>									
-							</div>
-							<div class="selected-language">
-								<div class="current-lang">
-									<span class="current-lang-label">Language : </span><strong>English</strong>
-								</div>
-								<ul class="languages-choose language-toogle">
-									<li>
-										<a href="#" title="English">
-											<span>English</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" title="Français (French)">
-											<span>Français</span>
-										</a>
-									</li>
-								</ul>										
-							</div>
-						</div>
-					</div>
-					<!-- HEADER-LEFT-MENU END -->
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
 					<!-- HEADER-RIGHT-MENU START -->
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<div class="header-right-menu">
@@ -195,7 +155,7 @@
 						<div class="categorys-product-search">
 							<form action="{{ route('search.product') }}" method="" class="search-form-cat">
 								<div class="search-product form-group">
-									<input style="width: 100%;" type="text" class="form-control search-form" name="key" placeholder="Enter your search key ... " />
+									<input style="width: 100%;" type="text" class="form-control search-form" name="key" placeholder="Nhập tên sản phẩm ... " />
 									<button class="search-button" value="Search" name="" type="submit">
 										<i class="fa fa-search"></i>
 									</button>									 

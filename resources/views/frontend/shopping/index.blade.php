@@ -77,15 +77,11 @@
 									<tr>
 										<td class="text-right" colspan="3">Mã giảm giá ( Nếu có )
 											<span>
-												<form action="{{ route('post.check.cuppon') }}" method="post">
-													@csrf
-														<input type="text" class="form-control" value="{{ Session::get('cp_code') ?? 0 }}" name="cuppon">
-														<button style="margin-top: 5px;"  type="submit" name="" class="btn btn-sm btn-primary">Cập nhật</button>
-														@if(Session::get('cp_code'))
-														<a href="{{ route('get.delete.cuppon') }}" class="bt btn-sm btn-success">Xóa mã</a>
-														@endif
-
-												</form>
+												<input type="text" class="form-control" value="{{ Session::get('cp_code') ?? 0 }}" name="cuppon">
+												<a href="{{ route('get.check.cuppon') }}" style="margin-top: 5px;" name="" class="btn btn-sm btn-primary js-update-cuppon">Cập nhật</a>
+												@if(Session::get('cp_code'))
+												 <a href="{{ route('get.delete.cuppon') }}" data-cuppon="{{ Session::get('cp_code') }}" class="bt btn-sm btn-success js-delete-cuppon">Xóa mã</a>
+												@endif
 											</span>
 										</td>
 										<td id="total_shipping" class="price" colspan="1">
@@ -173,7 +169,6 @@
 	   	 		let URL    = $(this).attr('data-url'); //lấy link sp cần update số lượng
 	   	 	    let qty = $(this).val();// lấy slg khi nhập vào thẻ input 
 	    		let idProduct = $(this).attr('data-id-product') // lấy id của sp
-console.log(URL);
 	    			if (URL) {
 	                    $.ajax({
 	                        url: URL,
@@ -198,6 +193,52 @@ console.log(URL);
 			    			if (url) {
 			                    $.ajax({
 			                        url: url,
+			                    }).done(function(results){
+			                    	alert(results.messages);
+			                        window.location.reload(); //web tự load lại au khi nhấn cập nhật
+			                    });
+			                }
+			   	 	})
+   	})
+   </script>
+
+  <!-- cập nhật mã giảm giá -->
+   <script type="text/javascript">
+   	 $(function(){
+   	 	//update CUPPON
+   	 	$(".js-update-cuppon").click(function(event){
+   	 		event.preventDefault();
+   	 		let $this = $(this);
+   	 		let URL    = $this.attr('href'); //lấy link sp cần update số lượng
+   	 		// console.log(URL);
+   	 	    let cupponCode = $this.prev().val();// lấy MÃ CUPPON khi nhập vào input đưng trước thành phần là thẻ cập nhật  bằng prev()
+
+    			if (URL) {
+                    $.ajax({
+                        url: URL,
+                        data: {cupponCode : cupponCode }
+                    }).done(function(results){
+                        alert(results.messages);
+                        window.location.reload(); //web tự load lại au khi nhấn cập nhật
+                    });
+                }
+   	 	})
+   	 })
+   </script>
+
+     <!-- Xóa mã giảm giá -->
+   <script type="text/javascript">
+		   	$(function(){
+			   	 	//xóa sp khỏi giỏ hàng
+			   	 	$(".js-delete-cuppon").click(function(event){
+			   	 		event.preventDefault();
+			   	 		let $this = $(this);
+			   	 		let url    = $(this).attr('href'); //lấy link sp cần update
+			   	 		let cupponCode = $(this).attr('data-cuppon') // lấy id của sp
+			    			if (url) {
+			                    $.ajax({
+			                        url: url,
+			                        data: {cupponCode : cupponCode }
 			                    }).done(function(results){
 			                    	alert(results.messages);
 			                        window.location.reload(); //web tự load lại au khi nhấn cập nhật

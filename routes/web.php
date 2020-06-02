@@ -43,9 +43,9 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::get('delete/{id}', 'ShoppingCartController@delete')->name('ajax.shopping.delete');
 	// update số lượng bằng ajax
 	Route::get('update/{id}', 'ShoppingCartController@update')->name('ajax.update.qty');
-	// nhập mã giảm giá
-	Route::post('check-cuppon', 'ShoppingCartController@checkCuppon')->name('post.check.cuppon');
-	// xóa mã khi ko dùng nưa
+	// nhập mã giảm giá bằng ajax
+	Route::get('check-cuppon', 'ShoppingCartController@checkCuppon')->name('get.check.cuppon');
+	// xóa mã khi ko dùng nưa ajax
 	Route::get('delete-cuppon', 'ShoppingCartController@deleteCuppon')->name('get.delete.cuppon');
 	// thanh toán
 	Route::post('thanh-toan', 'ShoppingCartController@postPay')->name('post.shopping.pay');

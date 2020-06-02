@@ -6,44 +6,40 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <!-- BSTORE-BREADCRUMB START -->
-                <div class="bstore-breadcrumb col-xs-12 col-sm-6 col-md-6" style="background: #0562fd;padding: 10px;">
-                    <a style="color: white" href="{{ route('frontend.home')}}">Trang chủ<span><i class="fa fa-caret-right"></i> </span> </a>
-                    @if( $category->c_parent_id == 0)
-                        <span style="color: white"> &nbsp{{ $category->c_name }} </span>
-                    @else
-                        <span> <i class="fa fa-caret-right"> </i> </span>
-                        <a style="color: white" href="shop-gird.html"> &nbsp{{ $category->categoryParent->c_name }}</a>
-                        <span style="color: white"> &nbsp{{ $category->c_name }} </span>
-                    @endif
+                <div class="bstore-breadcrumb col-xs-12 col-sm-3 col-md-3" style="background: #0562fd;padding: 6px;">
+                        <span style="color: white">{{ $category->c_name }} </span>
+                    
                 </div>
                 <!-- BSTORE-BREADCRUMB END -->
+                <div class="col-xs-12 col-sm-9 col-md-9" style="margin-top: 19px">
+                    <div class="row">
+                        <form class="col-sm-12" method="" action="">
+                                <div class="col-sm-4 search-price col-sm-offset-1">
+                                    <select name="gia" class="form-control">
+                                        <option value="0">--Chọn mức giá--</option>
+                                        <option value="9" {{ Request::get('gia') ==9 ? "selected='selected'" : ""}}>Dưới 20,000đ</option>
+                                         @for($i =1; $i <= 7; $i++)
+                                         <option value="{{ $i }}" {{ Request::get('gia') == $i ? "selected='selected'" : ""}}>Từ  {{ number_format($i * 20000)}}đ - {{ number_format($i * 20000 + 20000)}} đ</option>   
+                                          @endfor
+                                         <option value="8" {{ Request::get('gia') ==8 ? "selected='selected'" : ""}}>Trên 160,000 đ</option>             
+                                    </select>
+                                </div>
+                                <div class="col-sm-4 search-price">
+                                    <select name="sap_xep" class="form-control">
+                                        <option value="0">--Sắp xếp--</option>
+                                        <option value="1" {{ Request::get('sap_xep') ==1 ? "selected='selected'" : ""}}>Đang khuyến mãi</option>   
+                                        <option value="2" {{ Request::get('sap_xep') ==2 ? "selected='selected'" : ""}}>Không khuyến mãi</option>         
+                                        <option value="3" {{ Request::get('sap_xep') ==3 ? "selected='selected'" : ""}}>Gía giảm dần</option>
+                                        <option value="4" {{ Request::get('sap_xep') ==4 ? "selected='selected'" : ""}}>Gía tăng dần</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button style="margin-top: 0px" type="submit" class="btn btn-primary">Tìm sản phẩm</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <form class="col-sm-12" method="" action="" style="margin-top: 10px;padding-left: 0px;">
-                    <div class="col-sm-3 search-price">
-                        <select name="gia" class="form-control">
-                            <option value="0">--Chọn mức giá--</option>
-                            <option value="9" {{ Request::get('gia') ==9 ? "selected='selected'" : ""}}>Dưới 20,000đ</option>
-                             @for($i =1; $i <= 7; $i++)
-                             <option value="{{ $i }}" {{ Request::get('gia') == $i ? "selected='selected'" : ""}}>Từ  {{ number_format($i * 20000)}}đ - {{ number_format($i * 20000 + 20000)}} đ</option>   
-                              @endfor
-                             <option value="8" {{ Request::get('gia') ==8 ? "selected='selected'" : ""}}>Trên 160,000 đ</option>             
-                        </select>
-                    </div>
-                    <div class="col-sm-3 search-price">
-                        <select name="sap_xep" class="form-control">
-                            <option value="0">--Sắp xếp--</option>
-                            <option value="1" {{ Request::get('sap_xep') ==1 ? "selected='selected'" : ""}}>Đang khuyến mãi</option>   
-                            <option value="2" {{ Request::get('sap_xep') ==2 ? "selected='selected'" : ""}}>Không khuyến mãi</option>         
-                            <option value="3" {{ Request::get('sap_xep') ==3 ? "selected='selected'" : ""}}>Gía giảm dần</option>
-                            <option value="4" {{ Request::get('sap_xep') ==4 ? "selected='selected'" : ""}}>Gía tăng dần</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <button style="margin-top: 0px" type="submit" class="btn btn-primary">Tìm sản phẩm</button>
-                    </div>
-            </form>
         </div>
         <div class="row" style="margin-top: 20px;">
             <div class="col-xs-12">

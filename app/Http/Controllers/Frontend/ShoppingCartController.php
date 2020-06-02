@@ -106,63 +106,62 @@ class ShoppingCartController extends Controller
     // nhập mã giảm giá
     public function checkCuppon(Request $request)
     {
-        if (Session::get('user_id')) { // cuppon chỉ dùng cho tk đã đăng ký
-
-            $data = $request->except('_token');
-            $cuppon = Cuppon::where('cp_code', $data['cuppon'])->first();
-            
-            if ($cuppon) {
-                //check nếu user đã sử dụng rồi thì báo lỗi chỉ sử dụng 1 lần
-                $user_cuppon = UserCuppon::where([
-                    'uc_user_id'     => Session::get('user_id'),
-                    'uc_cuppon_code' => $cuppon['cp_code']
-                ])->first();
-                //nếu tồn tại thì báo chỉ sử dụng 1 lần
-                if($user_cuppon){
-                     Session::flash('alert', 'Bạn chỉ được sử dụng mã khuyến mãi 1 lần');
-                     return redirect()->back();
-                }else{
-                        if ($cuppon['cp_stock'] > 0) {
-                            $tst_total_money = str_replace(',', '', \Cart::subtotal() );
-
-                            if ($cuppon['cp_condition'] == 0) {
-                                $total_money_cuppon = $tst_total_money -( ( $tst_total_money * $cuppon['cp_number'] ) / 100 );
-                            }elseif ($cuppon['cp_condition'] == 1) {
-                                $total_money_cuppon =  $tst_total_money - $cuppon['cp_number']  ;
-                            }
-                            
-                            Session::put('cp_code', $cuppon['cp_code'] );
-                            Session::put('cp_condition', $cuppon['cp_condition'] );
-                            Session::put('cp_number', $cuppon['cp_number'] );
-                            Session::put('total_money_cuppon', $total_money_cuppon );
-
-                            return redirect()->back();
-                        }
-                            Session::flash('alert', 'Mã giảm giá đã hết');
-                            return redirect()->back();
+        if ($request->ajax()) {
+                if (Session::get('user_id')) { // cuppon chỉ dùng cho tk đã đăng ký
+                    $cupponCode = $request->cupponCode;
+                    $cuppon = Cuppon::where('cp_code', $cupponCode)->first();
                     
-                }
-            }
-                    Session::flash('alert', 'Mã giảm giá không tồn tại');
-                    return redirect()->back();
-        }
+                    if ($cuppon) {
+                        //check nếu user đã sử dụng rồi thì báo lỗi chỉ sử dụng 1 lần
+                        $user_cuppon = UserCuppon::where([
+                            'uc_user_id'     => Session::get('user_id'),
+                            'uc_cuppon_code' => $cuppon['cp_code']
+                        ])->first();
+                        //nếu tồn tại thì báo chỉ sử dụng 1 lần
+                        if($user_cuppon){
+                             return response(['messages' => 'Bạn chỉ được dùng mã 1 lần ?']);
+                        }else{
+                                if ($cuppon['cp_stock'] > 0) {
+                                    $tst_total_money = str_replace(',', '', \Cart::subtotal() );
 
-                   Session::flash('alert', 'Bạn cần đăng nhập để dùng mã');
-                    return redirect()->back();
+                                    if ($cuppon['cp_condition'] == 0) {
+                                        $total_money_cuppon = $tst_total_money -( ( $tst_total_money * $cuppon['cp_number'] ) / 100 );
+                                    }elseif ($cuppon['cp_condition'] == 1) {
+                                        $total_money_cuppon =  $tst_total_money - $cuppon['cp_number']  ;
+                                    }
+                                    
+                                    Session::put('cp_code', $cuppon['cp_code'] );
+                                    Session::put('cp_condition', $cuppon['cp_condition'] );
+                                    Session::put('cp_number', $cuppon['cp_number'] );
+                                    Session::put('total_money_cuppon', $total_money_cuppon );
+
+                                    return response(['messages' => 'Cập nhật thành công']);
+                                }
+                                    return response(['messages' => 'Mã giảm giá đã hết']);
+                            
+                        }
+                    }
+                            return response(['messages' => 'Mã giảm giá không tồn tại']);
+                }
+
+                   return response(['messages' => 'Bạn cần đăng nhập']);
+
+        }
 
     }
 
     // xóa mã giảm giá khi ko dùng nữa
-        public function deleteCuppon()
+        public function deleteCuppon(Request $request)
         {
-            $cp_code = Session::get('cp_code');
-            if ($cp_code) {
-                Session::forget('cp_code');
-                Session::forget('cp_number');
-                Session::forget('cp_condition');
-                Session::forget('total_money_cuppon');
-                Session::flash('alert', 'Xóa mã thành công');
-                return redirect()->back();
+            if ($request->ajax()) {
+                $cp_code = $request->cupponCode;
+                if ($cp_code) {
+                    Session::forget('cp_code');
+                    Session::forget('cp_number');
+                    Session::forget('cp_condition');
+                    Session::forget('total_money_cuppon');
+                    return response(['messages' => 'Xóa mã thành công']);
+                }
             }
         }
 
@@ -224,7 +223,7 @@ class ShoppingCartController extends Controller
         Session::forget('cp_code'); 
         Session::flash('alert', 'Đặt mua thành công, chúng tôi sẽ liên hệ lại với bạn');
 
-        return redirect()->back();
+        return redirect()->route('frontend.home');
     }
 
 }
