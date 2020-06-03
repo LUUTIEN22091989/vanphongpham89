@@ -377,8 +377,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Slide</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Thêm Slide</a></li>
-                        <li><a href="">Liệt kê Side</a></li>
+                        <li><a href="{{ route('admin.slide.create')}}">Thêm Slide</a></li>
+                        <li><a href="{{ route('admin.slide.index')}}">Liệt kê Side</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

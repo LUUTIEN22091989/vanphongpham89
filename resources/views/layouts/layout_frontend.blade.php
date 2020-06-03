@@ -121,7 +121,7 @@
 									<li><a href="{{ route('get.shopping.list') }}">Giỏ hàng của bạn</a></li>
 									@if( Session::get('user_id'))
 										<li><a href="{{ route('get.login')}}">Xin chào: {{ Session::get('user_name')}}</a></li>
-										<li><a href="">Quản lý tài khoản</a></li>
+										<li><a href="{{ route('get.user.index') }}">Quản lý tài khoản</a></li>
 										<li><a href="{{ route('get.logout')}}">Đăng xuất</a></li>
 									@else
 										<li><a href="{{ route('get.login')}}">Đăng nhập</a></li>

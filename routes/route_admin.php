@@ -93,6 +93,17 @@ Route::group(['prefix' => 'app-admin', 'namespace' => 'Admin', 'middleware' => '
         Route::get('active/{id}', 'AdminArticleController@active')->name('admin.article.active');
         Route::get('hot/{id}', 'AdminArticleController@hot')->name('admin.article.hot');
       });
+
+           // xử lý admin cho slide
+    Route::group(['prefix' => 'slide'], function(){
+            Route::get('', 'AdminSlideController@index')->name('admin.slide.index');
+             Route::get('create', 'AdminSlideController@create')->name('admin.slide.create');
+            Route::post('create', 'AdminSlideController@store');
+            Route::get('update/{id}', 'AdminSlideController@edit')->name('admin.slide.update');
+            Route::post('update/{id}', 'AdminSlideController@update');
+            Route::get('delete/{id}', 'AdminSlideController@delete')->name('admin.slide.delete');
+            Route::get('active/{id}', 'AdminSlideController@active')->name('admin.slide.active');
+        });
   })
 
  ?>

@@ -16,35 +16,20 @@
             <div class="main-slider-area">
                 <!-- SLIDER-AREA START -->
                 <div class="col-xs-12">
-                    <div class="slider-area">
-                        <div id="wrapper">
-                            <div class="slider-wrapper">
-                                <div id="mainSlider" class="nivoSlider">
-                                    <img style="height: 300px !important;" src="frontend/img/slider/2.jpg" alt="main slider" title="#htmlcaption"/>
-                                    <img style="height: 300px !important;" src="frontend/img/slider/1.jpg" alt="main slider" title="#htmlcaption2"/>
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        @php
+                              $i = 0;
+                            @endphp
+                            @foreach( $slides as $slide )
+                                @php
+                                  $i++;
+                                @endphp
+                                <div class="item {{ $i==1 ? 'active' : '' }}">
+                                        <a href="{{ $slide->sd_link}}"><img style="width:100%;height: 400px;" src="{{ asset($slide->sd_image) }}" class="girl img-fluid" alt="{{ $slide->sd_name }}" /></a>
                                 </div>
-                                <div id="htmlcaption" class="nivo-html-caption slider-caption">
-                                    <div class="slider-progress"></div>
-                                    <div class="slider-cap-text slider-text1">
-                                        <div class="d-table-cell">
-                                            <h2 class="animated bounceInDown">BEST THEMES</h2>
-                                            <p class="animated bounceInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod ut laoreet dolore magna aliquam erat volutpat.</p>
-                                            <a class="wow zoomInDown" data-wow-duration="1s" data-wow-delay="1s" href="#">Read More <i class="fa fa-caret-right"></i></a>													
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="htmlcaption2" class="nivo-html-caption slider-caption">
-                                    <div class="slider-progress"></div>
-                                    <div class="slider-cap-text slider-text2">
-                                        <div class="d-table-cell">
-                                            <h2 class="animated bounceInDown">BEST THEMES</h2>
-                                            <p class="animated bounceInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod ut laoreet dolore magna aliquam erat volutpat.</p>
-                                            <a class="wow zoomInDown" data-wow-duration="1s" data-wow-delay="1s" href="#">Read More <i class="fa fa-caret-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                      </div>
                     </div>
                 </div>
                 <!-- SLIDER-AREA END -->
@@ -139,13 +124,13 @@
                             <div class="item">
                                 <div class="latest-news-post">
                                     <div class="single-latest-post">
-                                        <a href="#"><img style="width: 100%;height: 150px;" src="{{ asset( $item->a_avatar) }}" alt="latest-post" /></a>
-                                        <h2><a href="#">{{ $item->a_name }}</a></h2>
+                                        <a href="{{ route('get.article.detail', $item->a_slug.'-'.$item->id)}}"><img style="width: 100%;height: 150px;" src="{{ asset( $item->a_avatar) }}" alt="latest-post" /></a>
+                                        <h2><a style="font-size: 13px;" href="{{ route('get.article.detail', $item->a_slug.'-'.$item->id)}}">{{ $item->a_name }}</a></h2>
                                         <div class="latest-post-info">
                                             <i class="fa fa-calendar"></i><span>{!! $item->created_at !!}</span>
                                         </div>
                                         <div class="read-more">
-                                            <a href="#">Chi tiết <i class="fa fa-long-arrow-right"></i></a>
+                                            <a href="{{ route('get.article.detail', $item->a_slug.'-'.$item->id)}}">Chi tiết <i class="fa fa-long-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
