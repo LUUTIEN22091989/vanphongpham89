@@ -367,8 +367,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Bài viết</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Thêm bài viết</a></li>
-                        <li><a href="">Liệt kê bài viết</a></li>
+                        <li><a href="{{ route('admin.article.create') }}">Thêm bài viết</a></li>
+                        <li><a href="{{ route('admin.article.index') }}">Liệt kê bài viết</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

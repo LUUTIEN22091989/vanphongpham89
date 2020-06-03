@@ -82,6 +82,17 @@ Route::group(['prefix' => 'app-admin', 'namespace' => 'Admin', 'middleware' => '
             Route::get('active/{id}', 'AdminContactController@active')->name('admin.contact.active');
 
              });
+            // article
+      Route::group(['prefix' => 'article'], function(){
+        Route::get('', 'AdminArticleController@index')->name('admin.article.index');
+        Route::get('create', 'AdminArticleController@create')->name('admin.article.create');
+        Route::post('create', 'AdminArticleController@store');
+        Route::get('update/{id}', 'AdminArticleController@edit')->name('admin.article.update');
+        Route::post('update/{id}', 'AdminArticleController@update');
+        Route::get('delete/{id}', 'AdminArticleController@delete')->name('admin.article.delete');
+        Route::get('active/{id}', 'AdminArticleController@active')->name('admin.article.active');
+        Route::get('hot/{id}', 'AdminArticleController@hot')->name('admin.article.hot');
+      });
   })
 
  ?>

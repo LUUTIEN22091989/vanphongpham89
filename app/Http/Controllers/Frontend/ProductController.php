@@ -67,7 +67,8 @@ class ProductController extends Controller
     	   
     	   $viewData = [
     	   	'products' => $products,
-    	   	'category'  => $category
+    	   	'category'  => $category,
+            'title_page' => $category->c_name
     	   ];
 
     	   return view('frontend.productByCategory.index', $viewData);

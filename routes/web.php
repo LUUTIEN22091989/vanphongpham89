@@ -51,6 +51,10 @@ Route::group(['namespace' => 'Frontend'], function(){
 	Route::post('thanh-toan', 'ShoppingCartController@postPay')->name('post.shopping.pay');
 	// đánh giá sản phẩm
     Route::post('danh-gia/{id}','RatingController@postRating')->name('post.rating.product');
+     // show toàn bộ tin tức
+    Route::get('tin-tuc', 'NewsController@index')->name('get.news.list');
+     // chi tiết bài viết
+    Route::get('chi-tiet-bai-viet/{slug}', 'ArticleDetailController@getArticleDetail')->name('get.article.detail');
     //Liên hệ
 	 Route::get('lien-he','ContactController@index')->name('get.contact');
 	 Route::post('lien-he','ContactController@store');

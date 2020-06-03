@@ -121,6 +121,7 @@
 									<li><a href="{{ route('get.shopping.list') }}">Giỏ hàng của bạn</a></li>
 									@if( Session::get('user_id'))
 										<li><a href="{{ route('get.login')}}">Xin chào: {{ Session::get('user_name')}}</a></li>
+										<li><a href="">Quản lý tài khoản</a></li>
 										<li><a href="{{ route('get.logout')}}">Đăng xuất</a></li>
 									@else
 										<li><a href="{{ route('get.login')}}">Đăng nhập</a></li>
@@ -147,8 +148,8 @@
 						<!-- LOGO END -->
 						<!-- HEADER-RIGHT-CALLUS START -->
 						<div class="header-right-callus">
-							<h3>call us free</h3>
-							<span>0123-456-789</span>
+							<h3>Hotline tư vấn</h3>
+							<span>0942 005 988</span>
 						</div>
 						<!-- HEADER-RIGHT-CALLUS END -->
 						<!-- CATEGORYS-PRODUCT-SEARCH START -->
@@ -263,7 +264,7 @@
 										</li>
 										@endforeach
 									@endif
-									    <li><a href="">Tin tức</a></li>
+									    <li><a href="{{ route('get.news.list') }}">Tin tức</a></li>
 									    <li><a href="{{ route('get.contact') }}">Liên hệ</a></li>
 								</ul>
 							</nav>
@@ -344,68 +345,6 @@
 
 		 @yield('content')
 
-		<!-- COMPANY-FACALITY START -->
-		<section class="company-facality">
-			<div class="container">
-				<div class="row">
-					<div class="company-facality-row">
-						<!-- SINGLE-FACALITY START -->
-						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-							<div class="single-facality">
-								<div class="facality-icon">
-									<i class="fa fa-rocket"></i>
-								</div>
-								<div class="facality-text">
-									<h3 class="facality-heading-text">FREE SHIPPING</h3>
-									<span>on order over $100</span>
-								</div>
-							</div>
-						</div>
-						<!-- SINGLE-FACALITY END -->
-						<!-- SINGLE-FACALITY START -->
-						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-							<div class="single-facality">
-								<div class="facality-icon">
-									<i class="fa fa-umbrella"></i>
-								</div>
-								<div class="facality-text">
-									<h3 class="facality-heading-text">24/7 SUPPORT</h3>
-									<span>online consultations</span>
-								</div>
-							</div>
-						</div>
-						<!-- SINGLE-FACALITY END -->
-						<!-- SINGLE-FACALITY START -->						
-						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-							<div class="single-facality">
-								<div class="facality-icon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<div class="facality-text">
-									<h3 class="facality-heading-text">DAILY UPDATES</h3>
-									<span>Check out store for latest</span>
-								</div>
-							</div>
-						</div>
-						<!-- SINGLE-FACALITY END -->
-						<!-- SINGLE-FACALITY START -->						
-						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-							<div class="single-facality">
-								<div class="facality-icon">
-									<i class="fa fa-refresh"></i>
-								</div>
-								<div class="facality-text">
-									<h3 class="facality-heading-text">30-DAY RETURNS</h3>
-									<span>moneyback guarantee</span>
-								</div>
-							</div>
-						</div>		
-						<!-- SINGLE-FACALITY END -->					
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- COMPANY-FACALITY END -->
 		<!-- FOOTER-TOP-AREA START -->
 		<section class="footer-top-area">
 			<div class="container">
@@ -416,8 +355,8 @@
 							<div class="footer-top-left">
 								<!-- NEWSLETTER-AREA START -->
 								<div class="newsletter-area">
-									<h2>Newsletter</h2>
-									<p>Subscribe to our mailing list to receive updates on new arrivals, special offers and other discount information.</p>
+									<h2>Đăng ký nhận tin</h2>
+									<p>Để nhận được các thông tin sản phẩm mới và chương trình khuyến mãi từ chúng tôi</p>
 									<form action="#">
 										<div class="form-group newsletter-form-group">
 										  <input type="text" class="form-control newsletter-form" placeholder="Enter your e-mail">
@@ -425,24 +364,6 @@
 										</div>
 									</form>
 								</div>
-								<!-- NEWSLETTER-AREA END -->
-								<!-- ABOUT-US-AREA START -->
-								<div class="about-us-area">
-									<h2>About Us</h2>
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-								</div>
-								<!-- ABOUT-US-AREA END -->
-								<!-- FLLOW-US-AREA START -->
-								<div class="fllow-us-area">
-									<h2>Follow us</h2>
-									<ul class="flow-us-link">
-										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-										<li><a href="#"><i class="fa fa-rss"></i></a></li>
-										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									</ul>
-								</div>
-								<!-- FLLOW-US-AREA END -->
 							</div>
 							<!-- FOOTER-TOP-LEFT END -->
 						</div>
@@ -450,33 +371,19 @@
 							<!-- FOOTER-TOP-RIGHT-1 START -->
 							<div class="footer-top-right-1">
 								<div class="row">
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hidden-sm">
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 hidden-sm">
 										<!-- STATICBLOCK START -->
 										<div class="staticblock">
-											<h2>static block</h2>
+											<h2>Về chúng tôi</h2>
 											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s<br />when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
 										</div>
 										<!-- STATICBLOCK END -->
 									</div>
-									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-										<!-- GOOGLE-MAP-AREA START -->
-										<div class="Store-Information">
-											<h2>Fanpage của chúng tôi</h2>
-											<div class="fb-page" data-href="https://www.facebook.com/vpp13/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/vpp13/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vpp13/">VĂN PHÒNG PHẨM ONLINE</a></blockquote></div>
-											<div style="margin-top: 5px;" class="fb-like" data-href="https://www.facebook.com/vpp13/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
-										</div>
-										<!-- GOOGLE-MAP-AREA END -->
-									</div>
-								</div>
-							</div>
-							<!-- FOOTER-TOP-RIGHT-1 END -->
-							<div class="footer-top-right-2">
-								<div class="row">
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<!-- FOTTER-MENU-WIDGET START -->
 										<div class="fotter-menu-widget">
 											<div class="single-f-widget">
-												<h2>Categories</h2>
+												<h2>Thông tin chung</h2>
 												<ul>
 													<li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Women </a></li>
 													<li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Men</a></li>
@@ -487,43 +394,14 @@
 										</div>
 										<!-- FOTTER-MENU-WIDGET END -->
 									</div>
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-										<!-- FOTTER-MENU-WIDGET START -->
-										<div class="fotter-menu-widget">
-											<div class="single-f-widget">
-												<h2>Information</h2>
-												<ul>
-													<li><a href="#"><i class="fa fa-angle-double-right"></i>Specials</a></li>
-													<li><a href="#"><i class="fa fa-angle-double-right"></i>New products</a></li>
-													<li><a href="#"><i class="fa fa-angle-double-right"></i>Best sellers</a></li>
-													<li><a href="contact-us.html"><i class="fa fa-angle-double-right"></i>Contact Us</a></li>
-												</ul>
-											</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										<!-- GOOGLE-MAP-AREA START -->
+										<div class="Store-Information">
+											<h2>Fanpage của chúng tôi</h2>
+											<div class="fb-page" data-href="https://www.facebook.com/vpp13/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/vpp13/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vpp13/">VĂN PHÒNG PHẨM ONLINE</a></blockquote></div>
+											<div style="margin-top: 5px;" class="fb-like" data-href="https://www.facebook.com/vpp13/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
 										</div>
-										<!-- FOTTER-MENU-WIDGET END -->
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-										<!-- FOTTER-MENU-WIDGET START -->
-										<div class="fotter-menu-widget">
-											<div class="single-f-widget">
-												<h2>My account</h2>
-												<ul>
-													<li><a href="#"><i class="fa fa-angle-double-right"></i>My orders</a></li>
-													<li><a href="#"><i class="fa fa-angle-double-right"></i>My credit slips</a></li>
-													<li><a href="#"><i class="fa fa-angle-double-right"></i>My addresses</a></li>
-													<li><a href="#"><i class="fa fa-angle-double-right"></i>My personal info</a></li>
-													<li><a href="#"><i class="fa fa-angle-double-right"></i>Sign out</a></li>
-												</ul>
-											</div>
-										</div>
-										<!-- FOTTER-MENU-WIDGET END -->
-									</div>
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<!-- PAYMENT-METHOD START -->
-										<div class="payment-method">
-											<img class="img-responsive pull-right" src="/frontend/img/payment.png" alt="payment-method" />
-										</div>
-										<!-- PAYMENT-METHOD END -->
+										<!-- GOOGLE-MAP-AREA END -->
 									</div>
 								</div>
 							</div>

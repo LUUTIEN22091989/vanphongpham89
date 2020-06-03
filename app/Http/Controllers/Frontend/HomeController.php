@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Article;
 use Illuminate\Support\Str;  // dùng cho slug
 
 class HomeController extends Controller
@@ -16,6 +17,8 @@ class HomeController extends Controller
     	$productsNew = Product::where('pro_status', 1)->orderByDesc('id')->select('id', 'pro_name', 'pro_slug', 'pro_price', 'pro_sale', 'pro_image')->limit(12)->get();
     	// sp được mua nhiều
     	$productsPay = Product::where('pro_status', 1)->where('pro_pay', '>', 0)->orderByDesc('id')->select('id', 'pro_name', 'pro_slug', 'pro_price', 'pro_sale', 'pro_image')->limit(12)->get();
+        // tin tức
+        $articles = Article::where('a_active', 1)->orderByDesc('id')->get();
 
         //sp theo từng danh mục
         $productsByCategory = [];
@@ -43,6 +46,7 @@ class HomeController extends Controller
     	$viewData = [
     		'productsNew'  => $productsNew,
     		'productsPay'  => $productsPay,
+            'articles'     => $articles,
     		'productsByCategory' => $productsByCategory
     	];
     	return view('frontend.home.index', $viewData);

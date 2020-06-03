@@ -34,7 +34,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <button style="margin-top: 0px" type="submit" class="btn btn-primary">Tìm sản phẩm</button>
+                                    <button style="margin-top: 0px" type="submit" class="btn btn-primary js-search">Tìm sản phẩm</button>
                                 </div>
                         </form>
                     </div>
