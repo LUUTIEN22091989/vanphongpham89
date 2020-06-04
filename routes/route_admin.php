@@ -1,5 +1,10 @@
 <?php 
 
+//file manager
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => 'check_admin_login'], function(){
+  \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 // trang login admin
 Route::group(['prefix' => 'auth-admin', 'namespace' => 'Admin\Auth'], function(){
   Route::get('login', 'AdminLoginController@getLogin')->name('get.admin.login');
@@ -15,6 +20,8 @@ Route::group(['prefix' => 'app-admin', 'namespace' => 'Admin', 'middleware' => '
 	Route::get('/', function(){
         return view('admin.home.index');
 	});
+  // thống kê
+  Route::get('statistical', 'AdminStatisticalController@index')->name('admin.statistical.index');
 		// danh mục
 	Route::group(['prefix' => 'category'], function(){
          Route::get('', 'AdminCategoryController@index')->name('admin.category.index');
@@ -36,7 +43,9 @@ Route::group(['prefix' => 'app-admin', 'namespace' => 'Admin', 'middleware' => '
            Route::get('delete/{id}', 'AdminProductController@delete')->name('admin.product.delete');
            Route::get('status/{id}', 'AdminProductController@status')->name('admin.product.status');
            Route::get('hot/{id}', 'AdminProductController@hot')->name('admin.product.hot');
-           
+           //xóa ảnh trong album
+            Route::get('delete-image/{id}', 'AdminProductController@deleteImageAlbum')->name('admin.product.delete_image');
+                   
         });
         //trang người quản trị
         Route::group(['prefix' => 'admin'], function(){
@@ -104,6 +113,16 @@ Route::group(['prefix' => 'app-admin', 'namespace' => 'Admin', 'middleware' => '
             Route::get('delete/{id}', 'AdminSlideController@delete')->name('admin.slide.delete');
             Route::get('active/{id}', 'AdminSlideController@active')->name('admin.slide.active');
         });
+    // các page thong tin chung
+       Route::group(['prefix' => 'static'], function(){
+        Route::get('', 'AdminPageStaticController@index')->name('admin.static.index');
+        Route::get('create', 'AdminPageStaticController@create')->name('admin.static.create');
+        Route::post('create', 'AdminPageStaticController@store');
+        Route::get('update/{id}', 'AdminPageStaticController@edit')->name('admin.static.update');
+        Route::post('update/{id}', 'AdminPageStaticController@update');
+        Route::get('delete/{id}', 'AdminPageStaticController@delete')->name('admin.static.delete');
+        Route::get('active/{id}', 'AdminPageStaticController@active')->name('admin.static.active');
+      });
   })
 
  ?>

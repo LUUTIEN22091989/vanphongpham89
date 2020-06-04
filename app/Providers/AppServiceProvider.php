@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
+use App\Models\PageStatic;
 use View;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,10 +30,13 @@ class AppServiceProvider extends ServiceProvider
         $categories = Category::where(['c_parent_id' => 0, 'c_status' => 1 ])->select('id', 'c_slug', 'c_name', 'c_parent_id')->get();
         //lấy danh mục cấp 2,3
         $_categories = Category::where('c_status', 1)->where('c_parent_id', '<>', 0)->select('id', 'c_slug', 'c_name', 'c_parent_id')->get();
+        //page thông tin chung
+        $pageStatics = PageStatic::orderBy('ps_sort')->get();
 
         View::share([
             'categories'  => $categories,
             '_categories' => $_categories,
+            'pageStatics' => $pageStatics
         ]);
     }
 }

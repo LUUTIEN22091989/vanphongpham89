@@ -65,6 +65,24 @@
                                             
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                      <h3 class="box-title mb-1">Album ảnh</h3>
+                                      @if( isset($images) )
+                                      <div class="row" style="margin-bottom: 5px">
+                                        @foreach( $images as $image)
+                                         <div class="col-sm-2">
+                                            <img src="/uploads/product/album/{{ $image->pi_slug }}" style="width: 90px;height: 100px">
+                                            <a href="{{ route('admin.product.delete_image', $image->id)}}" class="btn btn-xs btn-success">Xóa khỏi album</a>
+                                         </div>
+                                      @endforeach
+                                      </div>
+                                       @endif
+                                      <div class="form-group">
+                                        <div class="file-loading">
+                                            <input id="images" type="file" name="file[]" multiple class="file" data-overwrite-initial="false" data-min-file-count="0">
+                                        </div>
+                                      </div>
+                                </div>
                                 <div class="form-group row">
                                         <div class="col-sm-6">
                                             <label for="pro_sale">% Sale</label>

@@ -354,16 +354,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Danh mục tin tức</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="">Thêm danh mục</a></li>
-                        <li><a href="">Liệt kê danh mục</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
                         <span>Bài viết</span>
                     </a>
                     <ul class="sub">
@@ -387,8 +377,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Static</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Thêm Static</a></li>
-                        <li><a href="">Liệt kê Static</a></li>
+                        <li><a href="{{ route('admin.static.create') }}">Thêm Static</a></li>
+                        <li><a href="{{ route('admin.static.index') }}">Liệt kê Static</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -401,7 +391,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </li>
                 <li class="sub-menu">
-                    <a href="">
+                    <a href="{{ route('admin.statistical.index') }}">
                         <i class="fa fa-book"></i>
                         <span>Thống kê Admin</span>
                     </a>
@@ -444,11 +434,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- editor -->
 <script src="{{ asset('/admin/ckeditor/ckeditor.js')}}"></script>
 
-
+<!-- file manager -->
 <script type="text/javascript">
-    CKEDITOR.replace('ckeditor1');
-    CKEDITOR.replace('ckeditor2');
+    var options = {
+    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+  };
+
+    CKEDITOR.replace('ckeditor1', options);
+    CKEDITOR.replace('ckeditor2', options);
 </script>
+
 
 @yield('script')
 

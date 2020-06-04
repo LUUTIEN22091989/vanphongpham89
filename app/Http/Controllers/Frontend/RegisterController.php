@@ -14,7 +14,8 @@ class RegisterController extends Controller
 {
     public function getFormRegister(Request $request)
     {
-    	return view('frontend.home.register');
+        $title_page = 'Đăng ký';
+    	return view('frontend.home.register', compact('title_page'));
     }
 
     public function postRegister(RequestRegister $request)

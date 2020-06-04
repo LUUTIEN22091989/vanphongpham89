@@ -357,10 +357,11 @@
 								<div class="newsletter-area">
 									<h2>Đăng ký nhận tin</h2>
 									<p>Để nhận được các thông tin sản phẩm mới và chương trình khuyến mãi từ chúng tôi</p>
-									<form action="#">
+									<form action="{{ route('post.customerRegister') }}" method="POST">
+										@csrf
 										<div class="form-group newsletter-form-group">
-										  <input type="text" class="form-control newsletter-form" placeholder="Enter your e-mail">
-										  <input type="submit" class="newsletter-btn" name="submit" value="Subscribe" />
+										  <input required="" type="text" class="form-control newsletter-form" name="email" placeholder="Enter your e-mail">
+										  <button type="submit" class="newsletter-btn">Đăng ký</button>
 										</div>
 									</form>
 								</div>
@@ -375,7 +376,7 @@
 										<!-- STATICBLOCK START -->
 										<div class="staticblock">
 											<h2>Về chúng tôi</h2>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s<br />when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+											<p>Văn phòng phẩm 89 – Nhà cung cấp văn phòng phẩm uy tín, phục vụ tối đa nhu cầu của doanh nghiệp và ngành in ấn. Văn phòng phẩm bán trên Kinh Bắc chất lượng, đa dạng, giá cả phải chăng và có nhiều khuyến mãi bất ngờ.</p>
 										</div>
 										<!-- STATICBLOCK END -->
 									</div>
@@ -385,10 +386,9 @@
 											<div class="single-f-widget">
 												<h2>Thông tin chung</h2>
 												<ul>
-													<li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Women </a></li>
-													<li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Men</a></li>
-													<li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>clothing</a></li>
-													<li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>kids</a></li>
+													@foreach( $pageStatics as $ps)
+													<li><a href="{{ route('get.page.static', $ps->ps_slug)}}"><i class="fa fa-angle-double-right"></i>{{ $ps->ps_name }} </a></li>
+													@endforeach
 												</ul>
 											</div>
 										</div>
@@ -468,6 +468,35 @@
 		 <script type="text/javascript">
 		 	var DEVICE = '{{ device_agent() }}'
 		 </script>
+
+		 <!-- facebook -->
+		 <!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+	        window.fbAsyncInit = function() {
+	          FB.init({
+	            xfbml            : true,
+	            version          : 'v7.0'
+	          });
+	        };
+
+	        (function(d, s, id) {
+	        var js, fjs = d.getElementsByTagName(s)[0];
+	        if (d.getElementById(id)) return;
+	        js = d.createElement(s); js.id = id;
+	        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+	        fjs.parentNode.insertBefore(js, fjs);
+	      }(document, 'script', 'facebook-jssdk'));
+	  </script>
+
+      <!-- Your Chat Plugin code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="113458890377101"
+		  theme_color="#13cf13"
+		  logged_in_greeting="Vanphongpham89 kính chào Qúy khách"
+		  logged_out_greeting="Vanphongpham89 kính chào Qúy khách">
+      </div>
 
 		<!-- Google Map js -->
         <script src="https://maps.googleapis.com/maps/api/js"></script>	

@@ -17,10 +17,17 @@ class ProductDetailController extends Controller
     	$product = Product::findOrFail($id);
 
     	if ($product) {
+            //lấy album ảnh
+            $proImages = \DB::table('products_image')->where('pi_product_id', $id)->get();
+            //sp dang sale
+            $productsSale   = Product::where('pro_status', 1)->where('pro_sale', '>', 0)->select('id', 'pro_name', 'pro_slug','pro_sale', 'pro_image', 'pro_price', 'pro_sale')->limit(12)->get();
+
             $meta_canonical = $request->url();
     		$viewData = [
     			'product' => $product,
     			'productSuggests' => $this->getProductSuggests($product->pro_category_id, $id),//sp cùng danh mục
+                'proImages'      => $proImages,
+                'productsSale'   => $productsSale,
                 'meta_canonical' => $meta_canonical, 
                 'title_page'    => $product->pro_name
     		];

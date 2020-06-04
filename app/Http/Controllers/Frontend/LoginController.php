@@ -12,7 +12,8 @@ class LoginController extends Controller
 {
     public function getFormLogin(Request $request)
     {
-    	return view('frontend.home.login');
+        $title_page = 'Đăng nhập';
+    	return view('frontend.home.login', compact('title_page'));
     }
 
     public function postLogin(Request $request)

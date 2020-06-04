@@ -58,6 +58,10 @@ Route::group(['namespace' => 'Frontend'], function(){
     //Liên hệ
 	 Route::get('lien-he','ContactController@index')->name('get.contact');
 	 Route::post('lien-he','ContactController@store');
+	// khách hàng đăng ký nhận tin
+	 Route::post('dang-ky-nhan-tin', 'HomeController@customerRegister')->name('post.customerRegister');
+	 // các page thông tin chung
+	 Route::get('{slug}', 'HomeController@pageStatic')->name('get.page.static');
 
 
 });

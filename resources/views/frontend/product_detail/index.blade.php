@@ -1,4 +1,13 @@
 @extends('layouts.layout_frontend')
+
+@section('css')
+<style type="text/css">
+    .bx-controls-direction{
+        margin-top: -20px;
+    }
+</style>
+@stop
+
 @section('content')
 <!-- MAIN-CONTENT-SECTION START -->
 <section class="main-content-section">
@@ -28,41 +37,7 @@
                                         <img style="height: 350px;width: 100%" src="{{ asset($product->pro_image)}}" alt="{{$product->pro_name}}" />
                                         @if( $product->pro_sale)
                                             <a href="{{ route('get.ProductDetail', $product->pro_slug.'-'.$product->id )}}" class="new-mark-box" style="font-size: 13px;">-{{ $product->pro_sale}}%</a>
-                                        @endif                                    </div>
-                                </div>
-                                <div class="tab-pane" id="thumbnail_2">
-                                    <div class="single-product-image">
-                                        <img src="/frontend/img/product/sale/3.jpg" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
-                                        <a class="fancybox" href="img/product/sale/3.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="thumbnail_3">
-                                    <div class="single-product-image">
-                                        <img src="/frontend/img/product/sale/9.jpg" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
-                                        <a class="fancybox" href="img/product/sale/9.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="thumbnail_4">
-                                    <div class="single-product-image">
-                                        <img src="/frontend/img/product/sale/13.jpg" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
-                                        <a class="fancybox" href="img/product/sale/13.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="thumbnail_5">
-                                    <div class="single-product-image">
-                                        <img src="/frontend/img/product/sale/7.jpg" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
-                                        <a class="fancybox" href="img/product/sale/7.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="thumbnail_6">
-                                    <div class="single-product-image">
-                                        <img src="/frontend/img/product/sale/12.jpg" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
-                                        <a class="fancybox" href="img/product/sale/12.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
+                                        @endif                                    
                                     </div>
                                 </div>
                             </div>
@@ -70,24 +45,14 @@
                         <div class="select-product">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs select-product-tab bxslider">
-                                <li class="active">
-                                    <a href="#thumbnail_1" data-toggle="tab"><img src="{{ asset($product->pro_image)}}" alt="{{$product->pro_name}}" /></a>
+                                <li class="image-room active">
+                                    <img style="cursor: pointer;" src="{{ asset($product->pro_image)}}" alt="{{$product->pro_name}}" />
                                 </li>
-                                <li>
-                                    <a href="#thumbnail_2" data-toggle="tab"><img src="/frontend/img/product/sidebar_product/2.jpg" alt="pro-thumbnail" /></a>
+                                @foreach( $proImages as $img )
+                                <li class="image-room">
+                                    <img style="cursor: pointer;" src="/uploads/product/album/{{ $img->pi_slug }}" alt="/uploads/product/album/{{ $img->pi_name }}" />
                                 </li>
-                                <li>
-                                    <a href="#thumbnail_3" data-toggle="tab"><img src="/frontend/img/product/sidebar_product/3.jpg" alt="pro-thumbnail" /></a>
-                                </li>
-                                <li>
-                                    <a href="#thumbnail_4" data-toggle="tab"><img src="/frontend/img/product/sidebar_product/4.jpg" alt="pro-thumbnail" /></a>
-                                </li>
-                                <li>
-                                    <a href="#thumbnail_5" data-toggle="tab"><img src="/frontend/img/product/sidebar_product/5.jpg" alt="pro-thumbnail" /></a>
-                                </li>
-                                <li>
-                                    <a href="#thumbnail_6" data-toggle="tab"><img src="/frontend/img/product/sidebar_product/6.jpg" alt="pro-thumbnail" /></a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -228,63 +193,54 @@
                 <!-- RELATED-PRODUCTS-AREA END -->
             </div>
             <!-- RIGHT SIDE BAR START -->
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"  style="background: #F4F7F3">
                 <!-- SINGLE SIDE BAR START -->
                 <div class="single-product-right-sidebar">
-                    <h2 class="left-title">Viewed products</h2>
+                    <h2 class="left-title" style="color: blue">Đang Sale</h2>
                     <ul>
-                        <li>
-                            <a href="#"><img src="/frontend/img/product/sidebar_product/2.jpg" alt="" /></a>
-                            <div class="r-sidebar-pro-content">
-                                <h5><a href="#">Faded Short ...</a></h5>
-                                <p>Faded short sleeves t-shirt with high...</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#"><img src="/frontend/img/product/sidebar_product/4.jpg" alt="" /></a>
-                            <div class="r-sidebar-pro-content">
-                                <h5><a href="#">Printed Chif ..</a></h5>
-                                <p>Printed chiffon knee length dress...</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#"><img src="/frontend/img/product/sidebar_product/6.jpg" alt="" /></a>
-                            <div class="r-sidebar-pro-content">
-                                <h5><a href="#">Printed Sum ...</a></h5>
-                                <p>Long printed dress with thin...</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#"><img src="/frontend/img/product/sidebar_product/1.jpg" alt="" /></a>
-                            <div class="r-sidebar-pro-content">
-                                <h5><a href="#">Printed Dress </a></h5>
-                                <p>100% cotton double printed dress....</p>
-                            </div>
-                        </li>
+                        <!-- SINGLE ITEM START -->
+                                @if( isset($productsSale) )
+                                @foreach( $productsSale as $product)
+                                <li class="cat-product-list" style="padding: 0px;">
+                                    <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12">
+                                        <div class="single-product-item">
+                                            <div class="product-image">
+                                                <a style="margin: 0px;" href="{{ route('get.ProductDetail', $product->pro_slug.'-'.$product->id)}}"><img class="lazyload" src="{{ asset($product->pro_image)}}" alt="product-image" style="height: 90px;" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="list-view-content">
+                                            <div class="single-product-item">
+                                                <div class="product-info">
+                                                    <div class="customar-comments-box">
+                                                        <a style="font-size: 13px" href="{{ route('get.ProductDetail', $product->pro_slug.'-'.$product->id)}}">{{ $product->pro_name }} <span style="color: blue">
+                                                            @if( $product->pro_sale > 0)
+                                                               - Sale {{ $product->pro_sale }}%
+                                                            @endif </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="price-box">
+                                                        @if( $product->pro_price)
+                                                            @if( $product->pro_sale )
+                                                              <span class="new-price" style="padding: 5px 3px;">{{ number_format( ((100-$product->pro_sale)/100) * $product->pro_price )}}đ</span>
+                                                              <span class="new-price" style="padding: 5px 3px; color: red"><del>{{ number_format( $product->pro_price )}}đ</del></span>
+                                                            @else
+                                                              <span class="new-price" style="padding: 5px 3px;">{{ number_format( $product->pro_price )}}đ</span>
+                                                            @endif
+                                                        @else
+                                                            <span>Liên hệ</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                @endforeach
+                                @endif
+                                <!-- SINGLE ITEM END -->
                     </ul>
-                </div>
-                <!-- SINGLE SIDE BAR END -->
-                <!-- SINGLE SIDE BAR START -->
-                <div class="single-product-right-sidebar clearfix">
-                    <h2 class="left-title">Tags </h2>
-                    <div class="category-tag">
-                        <a href="#">fashion</a>
-                        <a href="#">handbags</a>
-                        <a href="#">women</a>
-                        <a href="#">men</a>
-                        <a href="#">kids</a>
-                        <a href="#">New</a>
-                        <a href="#">Accessories</a>
-                        <a href="#">clothing</a>
-                        <a href="#">New</a>
-                    </div>
-                </div>
-                <!-- SINGLE SIDE BAR END -->
-                <!-- SINGLE SIDE BAR START -->						
-                <div class="single-product-right-sidebar">
-                    <div class="slider-right zoom-img">
-                        <a href="#"><img class="img-responsive" src="/frontend/img/product/cms11.jpg" alt="sidebar left" /></a>
-                    </div>
                 </div>
             </div>
             <!-- SINGLE SIDE BAR END -->				
@@ -292,4 +248,17 @@
     </div>
 </section>
 <!-- MAIN-CONTENT-SECTION END -->
+@stop
+
+@section('script')
+ <script type="text/javascript">
+     $(function(){
+
+        // dùng cho hiển thị ảnh khi click vào từng ảnh nhỏ
+            $('.image-room').on('click', function() {
+                var imgUrl = $(this).children('img')[0].src;
+                $('.single-product-image').children('img')[0].src = imgUrl;
+            })
+    })
+ </script>
 @stop

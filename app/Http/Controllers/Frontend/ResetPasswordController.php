@@ -15,7 +15,8 @@ class ResetPasswordController extends Controller
 {
     public function getResetPassword(Request $request)
     {
-    	return view('frontend.home.resetPassword');
+        $title_page = 'Quên mật khẩu';
+    	return view('frontend.home.resetPassword', compact('title_page'));
     }
 
     public function saveNewPass(UserRequestNewPassword $request)

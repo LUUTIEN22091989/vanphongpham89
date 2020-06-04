@@ -36,74 +36,134 @@
             </div>
             <!-- MAIN-SLIDER-AREA END -->
         </div>
+    </div>
+</section>
+<section class="main-content-section">
+    <div class="container">
         <div class="row">
-            <!-- FEATURED-PRODUCTS-AREA START -->
-            <div class="featured-products-area">
-                <div class="center-title-area">
-                    <h2 class="center-title" style="color: #0562fd;">Sản phẩm mới nhất</h2>
-                </div>
-                <div class="col-xs-12">
-                    <div class="row">
-                        <!-- FEARTURED-CAROUSEL START -->
-                            <!-- SINGLE-PRODUCT-ITEM START -->
-                                @foreach( $productsNew as $item )
-                                <div class="item col-xs-6 col-sm-2" style="margin-bottom: 10px;height: 290px">
-                                    @include('frontend.include.product_item', ['item' => $item])
-                                </div>
+            <div class="col-xs-12 col-sm-3" style="padding-top: 50px;">
+                <div class="single-product-right-sidebar" style="background: #F4F7F3">
+                    <h2 class="left-title" style="color: blue">Đang Sale</h2>
+                    <ul>
+                        <!-- SINGLE ITEM START -->
+                                @if( isset($productsSale) )
+                                @foreach( $productsSale as $product)
+                                <li class="cat-product-list" style="padding: 0px;">
+                                    <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12">
+                                        <div class="single-product-item">
+                                            <div class="product-image">
+                                                <a style="margin: 0px;" href="{{ route('get.ProductDetail', $product->pro_slug.'-'.$product->id)}}"><img class="lazyload" src="{{ asset($product->pro_image)}}" alt="product-image" style="height: 90px;" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="list-view-content">
+                                            <div class="single-product-item">
+                                                <div class="product-info">
+                                                    <div class="customar-comments-box">
+                                                        <a style="font-size: 13px" href="{{ route('get.ProductDetail', $product->pro_slug.'-'.$product->id)}}">{{ $product->pro_name }} <span style="color: blue">
+                                                            @if( $product->pro_sale > 0)
+                                                               - Sale {{ $product->pro_sale }}%
+                                                            @endif </span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="price-box">
+                                                        @if( $product->pro_price)
+                                                            @if( $product->pro_sale )
+                                                              <span class="new-price" style="padding: 5px 3px;">{{ number_format( ((100-$product->pro_sale)/100) * $product->pro_price )}}đ</span>
+                                                              <span class="new-price" style="padding: 5px 3px; color: red"><del>{{ number_format( $product->pro_price )}}đ</del></span>
+                                                            @else
+                                                              <span class="new-price" style="padding: 5px 3px;">{{ number_format( $product->pro_price )}}đ</span>
+                                                            @endif
+                                                        @else
+                                                            <span>Liên hệ</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                                 @endforeach
-                                <!-- SINGLE-PRODUCT-ITEM END -->
-                        <!-- FEARTURED-CAROUSEL END -->
-                    </div>
+                                @endif
+                                <!-- SINGLE ITEM END -->
+                    </ul>
                 </div>
             </div>
-            <!-- FEATURED-PRODUCTS-AREA END -->
-        </div>
-        <div class="row">
-            <!-- FEATURED-PRODUCTS-AREA START -->
-            <div class="featured-products-area">
-                <div class="center-title-area">
-                    <h2 class="center-title" style="color: #0562fd;">Sản phẩm được mua nhiều</h2>
-                </div>
-                <div class="col-xs-12">
-                    <div class="row">
-                        <!-- FEARTURED-CAROUSEL START -->
-                            <!-- SINGLE-PRODUCT-ITEM START -->
-                                @foreach( $productsPay as $item )
-                                <div class="item col-xs-6 col-sm-2" style="margin-bottom: 10px;height: 290px">
-                                    @include('frontend.include.product_item', ['item' => $item])
-                                </div>
-                                @endforeach
-                                <!-- SINGLE-PRODUCT-ITEM END -->
-                        <!-- FEARTURED-CAROUSEL END -->
+            <div class="col-xs-12 col-sm-9">
+                <div class="row">
+                    <!-- FEATURED-PRODUCTS-AREA START -->
+                    <div class="featured-products-area">
+                        <div class="center-title-area">
+                            <h2 class="center-title" style="color: #0562fd;font-weight: bold;font-size: 25px;">Sản phẩm mới nhất</h2>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <!-- FEARTURED-CAROUSEL START -->
+                                    <!-- SINGLE-PRODUCT-ITEM START -->
+                                        @foreach( $productsNew as $item )
+                                        <div class="item col-xs-6 col-sm-3" style="margin-bottom: 10px;height: 290px">
+                                            @include('frontend.include.product_item', ['item' => $item])
+                                        </div>
+                                        @endforeach
+                                        <!-- SINGLE-PRODUCT-ITEM END -->
+                                <!-- FEARTURED-CAROUSEL END -->
+                            </div>
+                        </div>
                     </div>
+                    <!-- FEATURED-PRODUCTS-AREA END -->
                 </div>
-            </div>
-            <!-- FEATURED-PRODUCTS-AREA END -->
-        </div>
-        @foreach ($productsByCategory as $item)
-        <div class="row">
-            <!-- FEATURED-PRODUCTS-AREA START -->
-            <div class="featured-products-area">
-                <div class="center-title-area">
-                    <h2 class="center-title" style="color: #0562fd;">{{ $item['category']->c_name }}</h2>
-                </div>
-                <div class="col-xs-12">
-                    <div class="row">
-                        <!-- FEARTURED-CAROUSEL START -->
-                            <!-- SINGLE-PRODUCT-ITEM START -->
-                                @foreach( $item['products'] as $item )
-                                <div class="item col-xs-6 col-sm-2" style="margin-bottom: 10px;height: 290px">
-                                    @include('frontend.include.product_item', ['item' => $item])
-                                </div>
-                                @endforeach
-                                <!-- SINGLE-PRODUCT-ITEM END -->
-                        <!-- FEARTURED-CAROUSEL END -->
+                <div class="row">
+                    <!-- FEATURED-PRODUCTS-AREA START -->
+                    <div class="featured-products-area">
+                        <div class="center-title-area">
+                            <h2 class="center-title" style="color: #0562fd;font-weight: bold;font-size: 25px;">Sản phẩm được mua nhiều</h2>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <!-- FEARTURED-CAROUSEL START -->
+                                    <!-- SINGLE-PRODUCT-ITEM START -->
+                                        @foreach( $productsPay as $item )
+                                        <div class="item col-xs-6 col-sm-3" style="margin-bottom: 10px;height: 290px">
+                                            @include('frontend.include.product_item', ['item' => $item])
+                                        </div>
+                                        @endforeach
+                                        <!-- SINGLE-PRODUCT-ITEM END -->
+                                        <div>
+                                            {{ $productsPay->links() }}
+                                        </div>
+                                <!-- FEARTURED-CAROUSEL END -->
+                            </div>
+                        </div>
                     </div>
+                    <!-- FEATURED-PRODUCTS-AREA END -->
                 </div>
+                @foreach ($productsByCategory as $item)
+                <div class="row">
+                    <!-- FEATURED-PRODUCTS-AREA START -->
+                    <div class="featured-products-area">
+                        <div class="center-title-area">
+                            <h2 class="center-title" style="color: #0562fd;font-weight: bold;font-size: 25px;">{{ $item['category']->c_name }}</h2>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <!-- FEARTURED-CAROUSEL START -->
+                                    <!-- SINGLE-PRODUCT-ITEM START -->
+                                        @foreach( $item['products'] as $item )
+                                        <div class="item col-xs-6 col-sm-3" style="margin-bottom: 10px;height: 290px">
+                                            @include('frontend.include.product_item', ['item' => $item])
+                                        </div>
+                                        @endforeach
+                                        <!-- SINGLE-PRODUCT-ITEM END -->
+                                <!-- FEARTURED-CAROUSEL END -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FEATURED-PRODUCTS-AREA END -->
+                </div>
+                @endforeach
             </div>
-            <!-- FEATURED-PRODUCTS-AREA END -->
         </div>
-        @endforeach
     </div>
 </section>
 <!-- MAIN-CONTENT-SECTION END -->
@@ -113,7 +173,7 @@
         <div class="row">
             <div class="latest-news-row">
                 <div class="center-title-area">
-                    <h2 class="center-title"><a style="color: blue;" href="#">Tin tức</a></h2>
+                    <h2 class="center-title" style="color: blue;font-weight: bold;font-size: 25px;" href="#">Tin tức</h2>
                 </div>
                 <div class="col-xs-12">
                     <div class="row">
