@@ -274,11 +274,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Trang chủ frontend</span>
+                        <span>Setting</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="">Liệt kê </a></li>
-                        <li><a href="">Thêm mới</a></li>
+                        <li><a href="{{ route('admin.setting.index')}}">Liệt kê </a></li>
+                        <li><a href="{{ route('admin.setting.create')}}">Thêm mới</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

@@ -20,6 +20,16 @@ Route::group(['prefix' => 'app-admin', 'namespace' => 'Admin', 'middleware' => '
 	Route::get('/', function(){
         return view('admin.home.index');
 	});
+  //trang setting
+Route::group(['prefix' => 'setting'], function(){
+    Route::get('', 'AdminSettingController@index')->name('admin.setting.index');
+    Route::get('create', 'AdminSettingController@create')->name('admin.setting.create');
+    Route::post('create', 'AdminSettingController@store');
+    Route::get('update/{id}', 'AdminSettingController@edit')->name('admin.setting.update');
+    Route::post('update/{id}', 'AdminSettingController@update');
+    Route::get('delete/{id}', 'AdminSettingController@delete')->name('admin.setting.delete');
+    Route::get('status/{id}', 'AdminSettingController@status')->name('admin.setting.status');
+});
   // thống kê
   Route::get('statistical', 'AdminStatisticalController@index')->name('admin.statistical.index');
 		// danh mục

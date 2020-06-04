@@ -143,7 +143,7 @@
 					<div class="col-sm-12">
 						<!-- LOGO START -->
 						<div class="logo">
-							<a href="index.html"><img src="/frontend/img/logo.png" alt="bstore logo" /></a>
+							<a href="index.html"><img style="width: 223px;height: 90px;" src="{{ asset($setting->logo) }}" alt="bstore logo" /></a>
 						</div>
 						<!-- LOGO END -->
 						<!-- HEADER-RIGHT-CALLUS START -->
@@ -173,69 +173,11 @@
 		<header class="main-menu-area" style="background: #0562fd">
 			<div class="container">
 				<div class="row">
-					<!-- SHOPPING-CART START -->
-					<!-- <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 pull-right shopingcartarea">
-						<div class="shopping-cart-out pull-right">
-							<div class="shopping-cart">
-								<a class="shop-link" href="cart.html" title="View my shopping cart">
-									<i class="fa fa-shopping-cart cart-icon"></i>
-									<span class="ajax-cart-quantity">2</span>
-								</a>
-								<div class="shipping-cart-overly">
-									<div class="shipping-item">
-										<span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-										<div class="shipping-item-image">
-											<a href="#"><img src="/frontend/img/shopping-image.jpg" alt="shopping image" /></a>
-										</div>
-										<div class="shipping-item-text">
-											<span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">Watch</a></span>
-											<span class="pro-quality"><a href="#">S,Black</a></span>
-											<p>$22.95</p>
-										</div>
-									</div>
-									<div class="shipping-item">
-										<span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-										<div class="shipping-item-image">
-											<a href="#"><img src="/frontend/img/shopping-image2.jpg" alt="shopping image" /></a>
-										</div>
-										<div class="shipping-item-text">
-											<span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">Women Bag</a></span>
-											<span class="pro-quality"><a href="#">S,Gary</a></span>
-											<p>$19.95</p>
-										</div>
-									</div>
-									<div class="shipping-total-bill">
-										<div class="cart-prices">
-											<span class="shipping-cost">$2.00</span>
-											<span>Shipping</span>
-										</div>
-										<div class="total-shipping-prices">
-											<span class="shipping-total">$24.95</span>
-											<span>Total</span>
-										</div>										
-									</div>
-									<div class="shipping-checkout-btn">
-										<a href="checkout.html">Check out <i class="fa fa-chevron-right"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>	 -->
-					<!-- SHOPPING-CART END -->
-					<!-- MAINMENU START -->
 					<div class="col-xs-12 no-padding-right menuarea">
 						<div class="mainmenu" style="background: #0562fd;">
 							<nav>
 								<ul class="list-inline mega-menu">
 									<li class=""><a href="{{ route('frontend.home')}}">Trang chủ</a>
-										<!-- DROPDOWN MENU START -->
-										<div class="home-var-menu">
-											<ul class="home-menu">
-												<li><a href="index.html">Home variation 1</a></li>
-												<li><a href="index-2.html">Home variation 2</a></li>
-											</ul>												
-										</div>
-										<!-- DROPDOWN MENU END -->
 									</li>
 									@if( isset($categories) )
 										@foreach( $categories as $category)
@@ -377,6 +319,9 @@
 										<div class="staticblock">
 											<h2>Về chúng tôi</h2>
 											<p>Văn phòng phẩm 89 – Nhà cung cấp văn phòng phẩm uy tín, phục vụ tối đa nhu cầu của doanh nghiệp và ngành in ấn. Văn phòng phẩm bán trên Kinh Bắc chất lượng, đa dạng, giá cả phải chăng và có nhiều khuyến mãi bất ngờ.</p>
+											<p style="margin-top: 20px;">- Địa chỉ: {{ $setting->address_1 }}</p>
+											<p>- Hotline: {{$setting->hotline}}</p>
+											<p>- Email: {{$setting->email}}</p>
 										</div>
 										<!-- STATICBLOCK END -->
 									</div>
