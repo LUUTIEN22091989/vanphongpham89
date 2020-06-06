@@ -1,10 +1,5 @@
 <?php 
 
-//file manager
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => 'check_admin_login'], function(){
-  \UniSharp\LaravelFilemanager\Lfm::routes();
-});
-
 // trang login admin
 Route::group(['prefix' => 'auth-admin', 'namespace' => 'Admin\Auth'], function(){
   Route::get('login', 'AdminLoginController@getLogin')->name('get.admin.login');
@@ -15,11 +10,14 @@ Route::group(['prefix' => 'auth-admin', 'namespace' => 'Admin\Auth'], function()
   Route::post('quen-mat-khau', 'AdminLoginController@adminNewPassword')->name('admin.new.pass');
 });
 
+//file manager
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => 'check_admin_login'], function(){
+  \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+
 // giao dien trang admin
 Route::group(['prefix' => 'app-admin', 'namespace' => 'Admin', 'middleware' => 'check_admin_login'], function(){
-	Route::get('/', function(){
-        return view('admin.home.index');
-	});
   //trang setting
 Route::group(['prefix' => 'setting'], function(){
     Route::get('', 'AdminSettingController@index')->name('admin.setting.index');

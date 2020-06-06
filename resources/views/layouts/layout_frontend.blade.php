@@ -318,7 +318,7 @@
 										<!-- STATICBLOCK START -->
 										<div class="staticblock">
 											<h2>Về chúng tôi</h2>
-											<p>Văn phòng phẩm 89 – Nhà cung cấp văn phòng phẩm uy tín, phục vụ tối đa nhu cầu của doanh nghiệp và ngành in ấn. Văn phòng phẩm bán trên Kinh Bắc chất lượng, đa dạng, giá cả phải chăng và có nhiều khuyến mãi bất ngờ.</p>
+											<p>{!! $setting->desc !!}</p>
 											<p style="margin-top: 20px;">- Địa chỉ: {{ $setting->address_1 }}</p>
 											<p>- Hotline: {{$setting->hotline}}</p>
 											<p>- Email: {{$setting->email}}</p>
@@ -403,6 +403,16 @@
         <!-- facebook -->
         <div id="fb-root"></div>
 		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=165436404903392&autoLogAppEvents=1"></script>
+
+		<script type="text/javascript" src="/frontend/js/jquery.lazyload.min.js"></script>
+	    <script type="text/javascript">
+	        $(function() {
+	            $("img.img-lazyload").lazyload({
+	                effect : "fadeIn",
+	                 threshold: 0,
+	            });
+	        });
+	    </script>
 
 		<script>
 			new WOW().init();

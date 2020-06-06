@@ -22,6 +22,6 @@ class CheckLoginUser
         if ($user_id) {
             return $next($request);
         }
-            return redirect()->route('get.home');
+            return redirect()->route('frontend.home');
     }
 }

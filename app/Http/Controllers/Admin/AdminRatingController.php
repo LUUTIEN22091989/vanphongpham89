@@ -11,7 +11,7 @@ class AdminRatingController extends Controller
 {
      public function index()
     {
-    	$ratings = Rating::where('r_status', 1)->with('product:id,pro_name,pro_slug')->orderByDesc('id')->paginate(10);
+    	$ratings = Rating::with('product:id,pro_name,pro_slug')->orderByDesc('id')->paginate(10);
     	
     	$viewData = [
     		'ratings' => $ratings

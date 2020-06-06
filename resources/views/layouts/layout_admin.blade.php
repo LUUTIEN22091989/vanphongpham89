@@ -265,10 +265,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <a class="active" href="/app-admin">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Tổng quan</span>
+                
+                <li class="sub-menu">
+                    <a href="{{ route('admin.statistical.index') }}">
+                        <i class="fa fa-book"></i>
+                        <span>Thống kê Admin</span>
                     </a>
                 </li>
                 <li class="sub-menu">
@@ -390,12 +391,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{{ route('admin.contact.index') }}">Liệt kê Contact</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="{{ route('admin.statistical.index') }}">
-                        <i class="fa fa-book"></i>
-                        <span>Thống kê Admin</span>
-                    </a>
-                </li>
             </ul>            
         </div>
         <!-- sidebar menu end-->
@@ -432,7 +427,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
  <!-- link thông báo khi xóa -->
 <!-- editor -->
-<script src="{{ asset('/admin/ckeditor/ckeditor.js')}}"></script>
+<script src="/admin/ckeditor/ckeditor.js"></script>
 
 <!-- file manager -->
 <script type="text/javascript">

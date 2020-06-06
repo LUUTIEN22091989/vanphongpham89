@@ -11,6 +11,7 @@ use Carbon\Carbon;// DÙNG CHO created_at
 
 class AdminController extends Controller
 {
+    // trang admin
     public function index()
     {
 

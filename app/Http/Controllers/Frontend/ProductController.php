@@ -62,8 +62,10 @@ class ProductController extends Controller
                 if($sap_xep == 4 ) $products->orderBy('pro_price');
             }
 
-
            $products = $products->paginate(24);
+
+
+
     	   
     	   $viewData = [
     	   	'products' => $products,
@@ -72,7 +74,8 @@ class ProductController extends Controller
     	   ];
 
     	   return view('frontend.productByCategory.index', $viewData);
-    	}
-    	   return redirect()->route('frontend.home');
+    	}else {
+            return view('frontend.404.index');
+        }
     }
 }

@@ -22,17 +22,13 @@
                             <h2 class="center-title" style="color: #0562fd;">Sản phẩm tìm kiếm </h2>
                         </div>
                         <ul class="gategory-product">
-                            @if( $products)
                                 <!-- SINGLE ITEM START -->
                                 @foreach( $products as $item )
                                 <li class="gategory-product-list col-lg-2 col-md-3 col-sm-6 col-xs-12" style="margin-bottom: 10px;height: 290px">
                                        @include('frontend.include.product_item', ['item' => $item])
                                 </li>
                                 @endforeach
-                                <!-- SINGLE ITEM END -->
-                            @else
-                                <h3>Không tồn tại sản phẩm này</h3>
-                            @endif								
+                                <!-- SINGLE ITEM END -->								
                         </ul>
                     </div>
                 </div>

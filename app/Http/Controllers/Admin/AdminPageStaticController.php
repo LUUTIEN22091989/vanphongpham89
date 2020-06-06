@@ -17,12 +17,12 @@ class AdminPageStaticController extends Controller
     		'pageStatics' => $pageStatics
     	];
 
-    	return view('admin.pageStatic.index', $viewData);
+    	return view('admin.staticPage.index', $viewData);
     }
 
     public function create()
     {
-    	return view('admin.pageStatic.create');
+    	return view('admin.staticPage.create');
     }
 
     public function store(Request $request)
@@ -51,12 +51,12 @@ class AdminPageStaticController extends Controller
     public function edit($id)
     {       
          $pageStatic = PageStatic::find($id);
-        return view('admin.pageStatic.update', compact('pageStatic'));
+        return view('admin.staticPage.update', compact('pageStatic'));
     }
 
     public function update(Request $request, $id)
     {
-    	$pageStatic = pageStatic::find($id);
+    	$pageStatic = PageStatic::find($id);
 
         $data               = $request->except('_token'); //except là truy vấn dữ liệu nhưng bỏ đi thành phần _token
     	$data['ps_slug'] = Str::slug($request->ps_name);

@@ -73,13 +73,19 @@ class HomeController extends Controller
         $products = Product::where('pro_status', 1)->where('pro_name', 'like', '%'.$key.'%')->orWhere('pro_slug', 'like', '%'.Str::slug($key).'%')
             ->orWhere('pro_desc', 'like', '%'.$key.'%')->get();
 
-        $viewData = [
+        if ( empty($products)) {
+
+            $viewData = [
                     'products'       => $products,
                     'query'      => $request->query(),
                     'title_page'     => "Danh sách tìm kiếm"
              ];
 
             return view('frontend.search_products.index' ,$viewData);
+        }else{
+            return view('frontend.404.index');
+        }
+        
          
     }
 

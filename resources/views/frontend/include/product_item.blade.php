@@ -1,7 +1,7 @@
 
 <div class="single-product-item" style=" padding: 5px;border: 1px solid #80808021;height: 290px;">
     <div class="product-image">
-        <a href="{{ route('get.ProductDetail', $item->pro_slug.'-'.$item->id )}}"><img class="img-fluid" style="width: 100%; height: 180px;" src="{{ asset($item->pro_image)}}" alt="{{ $item->pro_name }}" /></a>
+        <a href="{{ route('get.ProductDetail', $item->pro_slug.'-'.$item->id )}}"><img class="img-fluid img-lazyload" style="width: 100%; height: 180px;" data-original="{{ asset($item->pro_image)}}" alt="{{ $item->pro_name }}" /></a>
         @if( $item->pro_sale)
         <a href="{{ route('get.ProductDetail', $item->pro_slug.'-'.$item->id )}}" class="new-mark-box" style="font-size: 13px;">-{{ $item->pro_sale}}%</a>
         @endif

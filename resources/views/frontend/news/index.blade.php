@@ -27,7 +27,7 @@
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <div class="single-product-item">
                                                 <div class="product-image">
-                                                    <a href="{{ route('get.article.detail', $article->a_slug.'-'.$article->id)}}"><img class="lazyload" style="width: 100%; height: 140px" data-original="" src="{{ asset( $article->a_avatar )}}" alt="product-image" /></a>
+                                                    <a href="{{ route('get.article.detail', $article->a_slug.'-'.$article->id)}}"><img class="img-lazyload" style="width: 100%; height: 140px" data-original="{{ asset( $article->a_avatar )}}" alt="product-image" /></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -73,7 +73,7 @@
                                     <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12">
                                         <div class="single-product-item">
                                             <div class="product-image">
-                                                <a href="{{ route('get.ProductDetail', $product->pro_slug.'-'.$product->id)}}"><img src="{{ asset($product->pro_image)}}" alt="product-image" /></a>
+                                                <a href="{{ route('get.ProductDetail', $product->pro_slug.'-'.$product->id)}}"><img data-original="{{ asset($product->pro_image)}}" class="img-lazyload" alt="product-image" /></a>
                                             </div>
                                         </div>
                                     </div>

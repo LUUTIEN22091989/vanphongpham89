@@ -111,43 +111,52 @@
                                 <div class="tab-pane" id="review">
                                     <div class="row tab-review-row">
                                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 padding-5">
-                        <div class="tab-rating-box">
-                            <h3 class="comment-reply-title"  style="margin-bottom: 20px">CÁC ĐÁNH GIÁ:</h3>
-                            <div class="comments-list">
-                                <div class="comments-details">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 padding-5">
-                        <div class="write-your-review">
-                            <h3 class="comment-reply-title" style="margin-bottom: 20px">ĐÁNH GIÁ:</h3>
-                            <form id="form-review" action="{{ route('post.rating.product', $product->id) }}" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div style="margin-top: 5px" class="col-md-12 comment-form-comment">
-                                        <p>Lời bình: </p>
-                                        <textarea required="required" class="form-control" style="padding: 5px" name="r_content" id="message" cols="50" rows="5" placeholder="Nhập đánh giá sản phẩm"></textarea>
-                                        <p style="margin-top: 10px;">Chọn đánh giá</p>
-                                        <select name="r_type" required="required" class="form-control">
-                                            <option value="0">--Chọn một đánh giá--</option>
-                                            <option value="1">Chất lượng kém</option>
-                                            <option value="2">Chất lượng Trung bình</option>
-                                            <option value="3">Chất lượng khá</option>
-                                            <option value="4">Chất lượng tốt</option>
-                                            <option value="5">Chất lượng rất tốt</option>
-                                        </select>
-                                        <p style="margin-top: 10px;">Họ tên: </p>
-                                        <input class="form-control" type="text" required="" name="r_name" placeholder="Nhập tên" value="{{Session::get('user_name')}}"><br>
-                                        <p>Email: </p>
-                                        <input class="form-control" type="email" name="r_email" placeholder="email" value="{{Session::get('user_email')}}"><br>
-                                        <button type="submit" style="font-size: 14px;margin-top: 10px" class="btn btn-success send-reviews">Gửi đánh giá</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                                            <div class="tab-rating-box">
+                                                <h3 class="comment-reply-title"  style="margin-bottom: 20px">CÁC ĐÁNH GIÁ:</h3>
+                                                <div class="comments-list">
+                                                    <div class="comments-details">
+                                                        @foreach( $ratings as $rating)
+                                                            <div class="comments-content-wrap" style="margin-left: 0">
+                                                                <span>
+                                                                <b style="color: blue;margin-right: 10px;">{{ $rating->r_name}}</b>
+                                                                <span class="post-time"><i class="fa fa-calendar"></i>&nbsp&nbsp{{ $rating->created_at}}</span>
+                                                                </span>
+                                                                <p style="margin-top: 5px; color: green" class="item_review">{{ $rating->getType($rating->r_type)['name']}} - {{$rating->r_content}}
+                                                                </p>
+                                                            </div>
+                                                            @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 padding-5">
+                                            <div class="write-your-review">
+                                                <h3 class="comment-reply-title" style="margin-bottom: 20px">ĐÁNH GIÁ:</h3>
+                                                <form id="form-review" action="{{ route('post.rating.product', $product->id) }}" method="POST">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div style="margin-top: 5px" class="col-md-12 comment-form-comment">
+                                                            <p>Lời bình: </p>
+                                                            <textarea required="required" class="form-control" style="padding: 5px" name="r_content" id="message" cols="50" rows="5" placeholder="Nhập đánh giá sản phẩm"></textarea>
+                                                            <p style="margin-top: 10px;">Chọn đánh giá</p>
+                                                            <select name="r_type" required="required" class="form-control">
+                                                                <option value="0">--Chọn một đánh giá--</option>
+                                                                <option value="1">Chất lượng kém</option>
+                                                                <option value="2">Chất lượng Trung bình</option>
+                                                                <option value="3">Chất lượng khá</option>
+                                                                <option value="4">Chất lượng tốt</option>
+                                                                <option value="5">Chất lượng rất tốt</option>
+                                                            </select>
+                                                            <p style="margin-top: 10px;">Họ tên: </p>
+                                                            <input class="form-control" type="text" required="" name="r_name" placeholder="Nhập tên" value="{{Session::get('user_name')}}"><br>
+                                                            <p>Email: </p>
+                                                            <input class="form-control" type="email" name="r_email" placeholder="email" value="{{Session::get('user_email')}}"><br>
+                                                            <button type="submit" style="font-size: 14px;margin-top: 10px" class="btn btn-success send-reviews">Gửi đánh giá</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +214,7 @@
                                     <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12">
                                         <div class="single-product-item">
                                             <div class="product-image">
-                                                <a style="margin: 0px;" href="{{ route('get.ProductDetail', $product->pro_slug.'-'.$product->id)}}"><img class="lazyload" src="{{ asset($product->pro_image)}}" alt="product-image" style="height: 90px;" /></a>
+                                                <a style="margin: 0px;" href="{{ route('get.ProductDetail', $product->pro_slug.'-'.$product->id)}}"><img class="img-lazyload" data-original="{{ asset($product->pro_image)}}" alt="product-image" style="height: 90px;" /></a>
                                             </div>
                                         </div>
                                     </div>
