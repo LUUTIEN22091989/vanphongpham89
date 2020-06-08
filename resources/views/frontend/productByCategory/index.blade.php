@@ -59,7 +59,7 @@
                             <!-- SINGLE ITEM END -->								
                         </ul>
                         <div>
-                            {{ $products->links() }}
+                            {{ $products->appends($query)->links() }}
                         </div>
                     </div>
                 </div>

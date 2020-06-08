@@ -15,7 +15,7 @@ class CreatePageStaticsTable extends Migration
     {
         Schema::create('page_statics', function (Blueprint $table) {
             $table->bigIncrements('id');
-             $table->string('ps_name');
+            $table->string('ps_name');
             $table->string('ps_slug')->index();
             $table->string('ps_avatar')->nullable();
             $table->tinyInteger('ps_active')->default(1)->index();

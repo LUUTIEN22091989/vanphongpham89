@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Rating;
+use App\Models\Category;
+use App\Models\UserFavourite;
+use Session;
+session_start();
+
 
 class ProductDetailController extends Controller
 {
@@ -17,6 +22,8 @@ class ProductDetailController extends Controller
     	$product = Product::findOrFail($id);
 
     	if ($product) {
+            // lấy danh mục sp
+            $category = Category::where('id', $product->pro_category_id)->first();
             //lấy album ảnh
             $proImages = \DB::table('products_image')->where('pi_product_id', $id)->get();
             //sp dang sale
@@ -26,6 +33,7 @@ class ProductDetailController extends Controller
 
             $meta_canonical = $request->url();
     		$viewData = [
+                'category' => $category,
     			'product' => $product,
     			'productSuggests' => $this->getProductSuggests($product->pro_category_id, $id),//sp cùng danh mục
                 'proImages'      => $proImages,
@@ -50,5 +58,32 @@ class ProductDetailController extends Controller
         $products   = $products->where(['pro_status' => 1, 'pro_category_id' => $categoryID ])->select('id', 'pro_name', 'pro_slug','pro_sale', 'pro_image', 'pro_price', 'pro_sale')->paginate(12);
 
         return $products;
+    }
+
+    // thêm yêu thích
+    public function addFavourite(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            if (Session::get('user_id')) {
+                $product = Product::find($id);
+                $userFavourite = UserFavourite::where(['uf_product_id' => $id, 'uf_user_id'=> Session::get('user_id')] )->first();
+                //1. check điều kiện
+                if ( !$product) return response(['messages' => 'Không tồn tại sản phẩm']);
+                if ($userFavourite) return response(['messages' => 'Sản phẩm này đã được yêu thích']);
+                //2.nếu tồn tại sp thì Lưu vào bảng favourite
+                \DB::table('user_favourite')->insert([
+                      'uf_product_id' => $id,
+                      'uf_user_id' => Session::get('user_id')
+                ]);
+
+                // Tăng cột pro_pay của các sản phẩm trong đơn lên 1 đơn vị 
+                \DB::table('products')->where('id', $id)->increment('pro_favourite');
+
+                return response(['messages' => 'Thêm yêu thích thành công']);
+                
+            }else {
+                return response(['messages' => 'Bạn cần đăng nhập']);
+            }
+        }
     }
 }

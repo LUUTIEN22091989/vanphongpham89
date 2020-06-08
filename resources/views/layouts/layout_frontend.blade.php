@@ -112,7 +112,16 @@
 		<div class="header-top" style="background: #0000ffa3;">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<div class="header-left-menu">
+							<div class="welcome-info">
+								 <span style="color: white" >{{ $setting->address_1 }}</span>
+							</div>
+							<div class="welcome-info">
+								 <span style="margin-left: 5px; color: white;">Hotline: 0{{$setting->hotline}}</span>
+							</div>
+						</div>
+					</div>
 					<!-- HEADER-RIGHT-MENU START -->
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<div class="header-right-menu">
@@ -218,63 +227,39 @@
 					<!-- MOBILE MENU START -->
 					<div class="col-sm-12 mobile-menu-area">
 						<div class="mobile-menu hidden-md hidden-lg" id="mob-menu">
-							<span class="mobile-menu-title">MENU</span>
 							<nav>
-								<ul>
-									<li><a href="index.html">Home</a>
-										<ul>
-											<li><a href="index.html">Home variation 1</a></li>
-											<li><a href="index-2.html">Home variation 2</a></li>
-										</ul>														
-									</li>								
-									<li><a href="shop-gird.html">Women</a>
-										<ul>
-											<li><a href="shop-gird.html">Tops</a>
-												<ul>
-													<li><a href="shop-gird.html">T-Shirts</a></li>
-													<li><a href="shop-gird.html">Blouses</a></li>
-												</ul>													
-											</li>
-											<li><a href="shop-gird.html">Dresses</a>
-												<ul>
-													<li><a href="shop-gird.html">Casual Dresses</a></li>
-													<li><a href="shop-gird.html">Summer Dresses</a></li>
-													<li><a href="shop-gird.html">Evening Dresses</a></li>	
-												</ul>	
-											</li>
-
-										</ul>
+								<ul class="list-inline mega-menu">
+									<li class=""><a href="{{ route('frontend.home')}}">Trang chủ</a>
 									</li>
-									<li><a href="shop-gird.html">men</a>
-										<ul>											
-											<li><a href="shop-gird.html">Tops</a>
-												<ul>
-													<li><a href="shop-gird.html">Sports</a></li>
-													<li><a href="shop-gird.html">Day</a></li>
-													<li><a href="shop-gird.html">Evening</a></li>
-												</ul>														
-											</li>
-											<li><a href="shop-gird.html">Blouses</a>
-												<ul>
-													<li><a href="shop-gird.html">Handbag</a></li>
-													<li><a href="shop-gird.html">Headphone</a></li>
-													<li><a href="shop-gird.html">Houseware</a></li>
-												</ul>														
-											</li>
-											<li><a href="shop-gird.html">Accessories</a>
-												<ul>
-													<li><a href="shop-gird.html">Houseware</a></li>
-													<li><a href="shop-gird.html">Home</a></li>
-													<li><a href="shop-gird.html">Health & Beauty</a></li>
-												</ul>														
-											</li>
-										</ul>										
-									</li>
-									<li><a href="shop-gird.html">clothing</a></li>
-									<li><a href="shop-gird.html">tops</a></li>
-									<li><a href="shop-gird.html">T-shirts</a></li>
-									<li><a href="#">Delivery</a></li>
-									<li><a href="about-us.html">About us</a></li>
+									@if( isset($categories) )
+										@foreach( $categories as $category)
+										<li>
+											<a href="{{ route('get.productByCategory', $category->c_slug.'-'.$category->id)}}">{{ $category->c_name }}</a>
+											<!-- DRODOWN-MEGA-MENU START -->
+											<div class="drodown-mega-menu" style="width: 100%; display: flex;">
+												@foreach( $_categories as $child )
+												@if( $category->id == $child->c_parent_id)
+													<div class="left-mega" style="width: 25%;padding: 5px;">
+														<div class="mega-menu-list">
+															<a class="mega-menu-title" href="{{ route('get.productByCategory', $child->c_slug.'-'.$child->id)}}" style="font-size: 15px;">{{ $child->c_name }}</a>
+															<ul>
+																@foreach( $_categories as $item )
+																	@if( $item->c_parent_id == $child->id )
+																	<li><a href="{{ route('get.productByCategory', $item->c_slug.'-'.$item->id)}}">{{ $item->c_name }}</a></li>
+																	@endif
+																@endforeach
+															</ul>
+														</div>
+													</div>	
+												@endif
+												@endforeach									
+											</div>
+											<!-- DRODOWN-MEGA-MENU END -->
+										</li>
+										@endforeach
+									@endif
+									    <li><a href="{{ route('get.news.list') }}">Tin tức</a></li>
+									    <li><a href="{{ route('get.contact') }}">Liên hệ</a></li>
 								</ul>
 							</nav>
 						</div>						

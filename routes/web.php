@@ -34,6 +34,8 @@ Route::group(['namespace' => 'Frontend'], function(){
    Route::get('danh-muc/{slug}', 'ProductController@index')->name('get.productByCategory');
    //Trang chi tiết sản phẩm
    Route::get('san-pham/{slug}', 'ProductDetailController@getProductDetail')->name('get.ProductDetail');
+  // thêm yêu thích
+    Route::get('them-yeu-thich/{idProduct}', 'ProductDetailController@addFavourite')->name('ajax_get.favourite');
 
    //Thêm sp vào giỏ hàng
 	Route::get('them-vao-gio-hang/{id}', 'ShoppingCartController@addShoppingCart')->name('get.ShoppingCart');

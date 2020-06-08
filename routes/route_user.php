@@ -11,6 +11,7 @@ Route::group(['prefix' => 'tai-khoan','namespace' => 'User', 'middleware' => 'ch
   Route::post('update-mat-khau', 'UserController@postSavePassword')->name('post.savePass');
 
   Route::get('quan-ly-don-hang', 'UserController@transaction')->name('get.user.transaction');
+
 });
 
 

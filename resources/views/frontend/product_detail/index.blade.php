@@ -18,7 +18,7 @@
                 <div class="bstore-breadcrumb col-xs-12 col-sm-6 col-md-6" style="background: #0562fd;padding: 10px;">
                     <a style="color: white" href="{{ route('frontend.home')}}">Trang chủ<span><i class="fa fa-caret-right"></i> </span> </a>
                     <span> <i class="fa fa-caret-right"> </i> </span>
-                    <a style="color: white" href="shop-gird.html"> {{ $product->category->c_name }} </a>
+                    <a style="color: white" href="{{ route('get.productByCategory', $category->c_slug.'-'.$category->id)}}"> {{ $category->c_name }} </a>
                     <span style="color: white"> {{$product->pro_name}} </span>
                 </div>
                 <!-- BSTORE-BREADCRUMB END -->
@@ -84,7 +84,8 @@
                             </div>
                             <div class="single-product-add-cart" style="padding: 5px;background: #80808024;">
                                 <p><i>Qúy khách lưu ý:<br> Cửa hàng chỉ ship với những đơn trên 300,000đ.<br> Cửa hàng ưu tiên xữ lý các đơn đặt hàng Online, free ship trong ngày nội thành HCM & HN!</i></p>
-                                <a style="margin-top: 15px;" class="btn btn-lg btn-primary" title="" href="{{ route('get.ShoppingCart', $product->id) }}">Thêm vào giỏ</a><br>
+                                <a style="margin-top: 15px;" class="btn btn-sm btn-primary" title="" href="{{ route('get.ShoppingCart', $product->id) }}">Thêm vào giỏ</a>
+                                <a style="margin-top: 15px;" class="btn btn-sm btn-primary js-add-favourite" title="" href="{{ route('ajax_get.favourite', $product->id)}}">Thêm yêu thích</a><br>
                                 <div style="margin-top: 5px;" class="fb-share-button" data-href="http://vanphongpham89.com/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $meta_canonical }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                                 <div class="fb-like" data-href="{{ $meta_canonical }}" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="false"></div>
                             </div>
@@ -270,4 +271,25 @@
             })
     })
  </script>
+
+ <!-- thêm yêu thích -->
+  <script type="text/javascript">
+       $(function(){
+            //yêu thích
+            $(".js-add-favourite").click(function(event){
+                event.preventDefault();
+                let $this = $(this);
+                let URL    = $(this).attr('href'); 
+                    if (URL) {
+                        $.ajax({
+                            url: URL
+                        }).done(function(results){
+                            alert(results.messages);
+                            window.location.reload(); //web tự load lại au khi nhấn cập nhật
+                        });
+                    }
+            })
+         })
+
+   </script>
 @stop
